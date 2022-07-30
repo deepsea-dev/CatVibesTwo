@@ -1,5 +1,5 @@
 {
-  "name": "CatVibesTwo",
+  "name": "cat_vibes_two",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/deepsea-dev/CatVibesTwo.git",
@@ -23,7 +23,7 @@
     "typescript": "^4.7.4"
   },
   "scripts": {
-    "server": "nodemon index.ts",
+    "server": "nodemon src/index.ts",
     "app": "yarn --cwd app run start",
     "start": "concurrently \"yarn run server\" \"yarn run app\"",
     "lint-server": "eslint . --ext .ts",
