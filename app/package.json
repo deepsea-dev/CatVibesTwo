@@ -20,12 +20,36 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint ."
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": ["*"],
+        "rules": {
+          "indent": [
+              "error",
+              2
+          ],
+          "linebreak-style": [
+              "error",
+              "unix"
+          ],
+          "quotes": [
+              "error",
+              "single"
+          ],
+          "semi": [
+              "error",
+              "always"
+          ]
+        }
+      }
     ]
   },
   "browserslist": {
