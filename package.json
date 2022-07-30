@@ -30,6 +30,7 @@
     "lint-app": "yarn --cwd app run lint",
     "lint": "yarn lint-server && yarn lint-app",
     "test-server": "jest tests/**",
-    "test-app": "yarn --cwd app run test"
+    "test-app": "yarn --cwd app run test",
+    "ci": "yarn install --frozen-lockfile"
   }
 }
