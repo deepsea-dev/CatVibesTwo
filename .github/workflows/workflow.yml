@@ -29,6 +29,7 @@ jobs:
         run: yarn lint-server
   test-app:
     needs: [lint-server, lint-app]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -41,6 +42,7 @@ jobs:
         run: yarn test-app
   test-server:
     needs: [lint-server, lint-app]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
