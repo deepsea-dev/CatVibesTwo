@@ -3,8 +3,7 @@ on:
   workflow_run:
     workflows: Lint and test
     branches: deployment
-    types:
-      - completed
+    types: completed
 jobs:
   build:
     name: Build docker image
