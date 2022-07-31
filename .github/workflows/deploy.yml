@@ -1,12 +1,8 @@
 name: Build Docker image and deploy to heroku
 on:
-  push:
-    branches:
-      - main
-      - deployment
   workflow_run:
-    workflows: ["Lint and test"]
-    branches: [main, deployment]
+    workflows: Lint and test
+    branches: deployment
     types:
       - completed
 jobs:
