@@ -3,10 +3,10 @@ on:
   push:
     branches:
       - main
-      - deploy
+      - deployment
   workflow_run:
     workflows: ["Lint and test"]
-    branches: [main, deploy]
+    branches: [main, deployment]
     types:
       - completed
 jobs:
