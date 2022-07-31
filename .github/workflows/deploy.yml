@@ -41,12 +41,11 @@ jobs:
     name: Deploy to Heroku
     runs-on: ubuntu-latest
     needs: build
+    env:
+      HEROKU_APP_NAME: catvibestwo
+      HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
     steps:
-      - name: setup evn
-        env:
-          HEROKU_APP_NAME: catvibestwo
-          HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       - name: Get image
         uses: actions/cache@v3
         with:
