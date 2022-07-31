@@ -26,4 +26,5 @@ RUN yarn --cwd app-src run build
 RUN mv app-src/build ./site
 
 EXPOSE 8088
+ENV NODE_ENV='production'
 CMD node --experimental-specifier-resolution=node --loader ts-node/esm index.ts
