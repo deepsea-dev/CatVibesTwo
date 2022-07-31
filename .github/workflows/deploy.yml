@@ -2,7 +2,7 @@ name: Build Docker image and deploy to heroku
 on:
   workflow_run:
     workflows: Lint and test
-    branches: deployment
+    branches: main
     types: completed
 jobs:
   build:
@@ -13,4 +13,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Build
-        run: docker run -p 8088:8088 deepsea-dev/catvibestwo
+        run: docker build . -t deepsea-dev/catvibestwo
