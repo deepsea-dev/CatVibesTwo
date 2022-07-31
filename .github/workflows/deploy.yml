@@ -47,3 +47,12 @@ jobs:
         with:
           path: build.tar
           key: docker_file
+      - name: Login to Heroku
+        rune: docker login --username=${secrets.HEROKU_EMAIL} --password=${secrets.HEROKU_API_KEY} registry.heroku.com
+      - name: Publish image
+        run: |
+          docker load < build.tar
+          docker tag deepsea-dev/catvibestwo registry.heroku.com/catvibestwo/web
+          docker push registry.heroku.com/catvibestwo/web
+      - name: Release
+        run: heroku container:release web
