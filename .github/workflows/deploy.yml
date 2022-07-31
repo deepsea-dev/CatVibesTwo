@@ -13,11 +13,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Build
-        run: 
-         - docker build . -t deepsea-dev/catvibestwo
-         - docker save deepsea-dev/catvibestwo > build.tar
+        run: |
+          docker build . -t deepsea-dev/catvibestwo
+          docker save deepsea-dev/catvibestwo > build.tar
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: docker-image
           path: build.tar
+  deploy:
+    name: Deploy to Heroku
+    runs-on: ubuntu-latest
+    needs: build
