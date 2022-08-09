@@ -18,5 +18,13 @@ const StyledInput = styled.input`
   top: 50%;
   left: 50%;
   margin-right: -50%;
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
+  background-color: dimgray;
+  color: white;
+  border: none;
+  font-size: 20px;
+  text-align: center;
+  padding: 16px;
+  width: 600px;
+  outline: none;
 `;
