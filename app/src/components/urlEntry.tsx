@@ -1,19 +1,28 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 export const UrlEntry: React.FC = () => {
-  const [urlEntered, setUrlEntered] = useState<string | undefined>();
+  const [urlEntered, setUrlEntered] = useState<string>('');
+  const [isHidden, setIsHidden] = useState<boolean>(false);
+
+  const inputElement = useRef<HTMLInputElement>(null);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUrlEntered(event.target.value);
   };
 
   return (
-    <StyledDiv>
+    <StyledDiv 
+      onClick={() => inputElement.current?.focus()}
+      className={isHidden ? 'fadeOut' : 'fadeIn'}
+    >
       <input 
         type="text"
         value={urlEntered}
         onChange={handleChange}
+        ref={inputElement}
+        onFocus={() => setIsHidden(true)}
+        onBlur={() => setIsHidden(urlEntered !== '')}
       />
     </StyledDiv>
   );
@@ -26,13 +35,12 @@ const StyledDiv = styled.div`
   top: 50%;
   left: 50%;
   margin-right: -50%;
-  height: 60px;
-  width: 600px;
+  height: 50px;
+  width: 800px;
   transform: translate(-50%, -50%);
   
   &, * {
     background-color: #383030;
-;
   }
 
   input {
@@ -46,6 +54,22 @@ const StyledDiv = styled.div`
     outline: none;
   }
 
+  &.fadeOut {
+    &:after {
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s linear 300ms, opacity 300ms;
+    }
+  }
+
+  &.fadeIn {
+    &:after {
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s linear 0s, opacity 300ms;
+    }
+  }
+
   &:after {
     content: 'Enter a video link (50MB Max.)';
     color: white;
@@ -55,5 +79,6 @@ const StyledDiv = styled.div`
     text-align: center;
     top: calc(-55% - ${fontSize/2}px);
     position: relative;
+    cursor: text;
   }
 `;
