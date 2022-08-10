@@ -19,10 +19,9 @@ export const UrlEntry: React.FC = () => {
   );
 };
 
+const fontSize = 20;
+
 const StyledDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: stretch;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -32,24 +31,29 @@ const StyledDiv = styled.div`
   transform: translate(-50%, -50%);
   
   &, * {
-    background-color: dimgray;
+    background-color: #383030;
+;
   }
 
   input {
-    flex-grow: 1;
-    margin: 16px;
+    border: 10px solid red;
+    width: 100%;
+    height: 100%;
     color: white;
     border: none;
-    font-size: 20px;
+    font-size: ${fontSize}px;
     text-align: center;
     outline: none;
   }
 
-  /* &:after {
-    content: 'sdfsdfsdfsdf';
+  &:after {
+    content: 'Enter a video link (50MB Max.)';
+    color: white;
+    font-size: ${fontSize}px;
     display: block;
-    width: 100px;
-    height: 100px;
-    border: 10px solid red;
-  } */
+    width: 100%;
+    text-align: center;
+    top: calc(-55% - ${fontSize/2}px);
+    position: relative;
+  }
 `;
