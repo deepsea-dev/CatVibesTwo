@@ -14,6 +14,7 @@ export const UrlEntry: React.FC = () => {
   return (
     <StyledDiv 
       onClick={() => inputElement.current?.focus()}
+      data-testid="url-entry"
     >
       <input 
         type="text"
@@ -22,8 +23,9 @@ export const UrlEntry: React.FC = () => {
         ref={inputElement}
         onFocus={() => setIsHidden(true)}
         onBlur={() => setIsHidden(urlEntered !== '')}
+        data-testid="url-entry-input"
       />
-      <span className={isHidden ? 'fadeOut' : 'fadeIn'}>Enter a video link</span>
+      <span className={isHidden ? 'fadeOut' : 'fadeIn'}>Enter a video link (50MB Max.)</span>
     </StyledDiv>
   );
 };
