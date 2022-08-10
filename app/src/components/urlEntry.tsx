@@ -14,7 +14,6 @@ export const UrlEntry: React.FC = () => {
   return (
     <StyledDiv 
       onClick={() => inputElement.current?.focus()}
-      className={isHidden ? 'fadeOut' : 'fadeIn'}
     >
       <input 
         type="text"
@@ -24,6 +23,7 @@ export const UrlEntry: React.FC = () => {
         onFocus={() => setIsHidden(true)}
         onBlur={() => setIsHidden(urlEntered !== '')}
       />
+      <span className={isHidden ? 'fadeOut' : 'fadeIn'}>Enter a video link</span>
     </StyledDiv>
   );
 };
@@ -54,23 +54,7 @@ const StyledDiv = styled.div`
     outline: none;
   }
 
-  &.fadeOut {
-    &:after {
-      visibility: hidden;
-      opacity: 0;
-      transition: visibility 0s linear 300ms, opacity 300ms;
-    }
-  }
-
-  &.fadeIn {
-    &:after {
-      visibility: visible;
-      opacity: 1;
-      transition: visibility 0s linear 0s, opacity 300ms;
-    }
-  }
-
-  &:after {
+  span {
     content: 'Enter a video link (50MB Max.)';
     color: white;
     font-size: ${fontSize}px;
@@ -80,5 +64,17 @@ const StyledDiv = styled.div`
     top: calc(-55% - ${fontSize/2}px);
     position: relative;
     cursor: text;
+
+    &.fadeIn {
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s linear 0s, opacity 300ms;
+    }
+
+    &.fadeOut {
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s linear 300ms, opacity 300ms;
+    }
   }
 `;
