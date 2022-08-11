@@ -1,11 +1,8 @@
-import React, { ChangeEvent, useRef, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 
 export const UrlEntry: React.FC = () => {
   const [urlEntered, setUrlEntered] = useState<string>('');
-  const [isHidden, setIsHidden] = useState<boolean>(false);
-
-  const inputElement = useRef<HTMLInputElement>(null);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUrlEntered(event.target.value);
@@ -13,24 +10,18 @@ export const UrlEntry: React.FC = () => {
 
   return (
     <StyledDiv 
-      onClick={() => inputElement.current?.focus()}
       data-testid="url-entry"
     >
       <input 
         type="text"
         value={urlEntered}
         onChange={handleChange}
-        ref={inputElement}
-        onFocus={() => setIsHidden(true)}
-        onBlur={() => setIsHidden(urlEntered !== '')}
+        placeholder='Enter a video link (50MB Max.)'
         data-testid="url-entry-input"
       />
-      <span className={isHidden ? 'fadeOut' : 'fadeIn'}>Enter a video link (50MB Max.)</span>
     </StyledDiv>
   );
 };
-
-const fontSize = 20;
 
 const StyledDiv = styled.div`
   position: absolute;
@@ -51,32 +42,13 @@ const StyledDiv = styled.div`
     height: 100%;
     color: white;
     border: none;
-    font-size: ${fontSize}px;
+    font-size: 20px;
     text-align: center;
     outline: none;
-  }
 
-  span {
-    content: 'Enter a video link (50MB Max.)';
-    color: white;
-    font-size: ${fontSize}px;
-    display: block;
-    width: 100%;
-    text-align: center;
-    top: calc(-55% - ${fontSize/2}px);
-    position: relative;
-    cursor: text;
-
-    &.fadeIn {
-      visibility: visible;
+    ::placeholder {
+      color: white;
       opacity: 1;
-      transition: visibility 0s linear 0s, opacity 300ms;
-    }
-
-    &.fadeOut {
-      visibility: hidden;
-      opacity: 0;
-      transition: visibility 0s linear 300ms, opacity 300ms;
     }
   }
 `;
