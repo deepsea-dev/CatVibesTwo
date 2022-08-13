@@ -13,17 +13,17 @@ export const init = (app: Application): void => {
   app.get('/api', async (req, res: Response<HelloMessageResponse>) => {
     res.status(200).json({message: `Hello: ${req.headers['user-agent']}`});
   });
-  app.get('/api/submit', async (req: Request<DownloadMessageRequest>, res: Response<DownloadMessageResponse>) => {
-    if (!req.params['url']) return res.status(400); // Bad input
+  app.post('/api/submit', async (req: Request<DownloadMessageRequest>, res: Response<DownloadMessageResponse>) => {
+    if (req.body.url === undefined) return res.sendStatus(400); // Bad input
   
-    const videoID = req.params.url.match(YoutubeURLRegex);
+    const videoID = req.body.url.match(YoutubeURLRegex);
     if (videoID && videoID?.length >= 6) {
       // return video id here
       const newVideoID = 'placeholder';
       return res.status(200).json({id: `${newVideoID}`});
     }
 
-    return res.status(400);
+    return res.sendStatus(400);
   }); 
   
 };
