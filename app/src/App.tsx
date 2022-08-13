@@ -1,8 +1,8 @@
-import { Name } from './components/Name/Name';
+import { UrlEntry } from './components/urlEntry';
 
 function App() {
   return (
-    <Name/>
+    <UrlEntry/>
   );
 }
 
