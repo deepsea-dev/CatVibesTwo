@@ -6,6 +6,7 @@ import { Application, Request, Response } from 'express';
 import { DownloadMessageRequest } from '../../models/downloadMessageRequest';
 import { DownloadMessageResponse } from '../../models/downloadMessageResponse';
 import { HelloMessageResponse } from '../../models/helloMessageResponse';
+import { ErrorResponse } from '../../models/ErrorResponse';
 
 const YoutubeURLRegex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\\-]+\?v=|embed\/|v\/)?)([\w\\-]+)(\S+)?$/;
 
@@ -13,17 +14,15 @@ export const init = (app: Application): void => {
   app.get('/api', async (req, res: Response<HelloMessageResponse>) => {
     res.status(200).json({message: `Hello: ${req.headers['user-agent']}`});
   });
-  app.post('/api/submit', async (req: Request<DownloadMessageRequest>, res: Response<DownloadMessageResponse>) => {
-    if (req.body.url === undefined) return res.sendStatus(400); // Bad input
-  
+  app.post('/api/submit', async (req: Request<DownloadMessageRequest>, res: Response<DownloadMessageResponse | ErrorResponse>) => {
+    if (req.body.url === undefined) return res.status(400).send({ message: 'No url provided' });
+    
     const videoID = req.body.url.match(YoutubeURLRegex);
-    if (videoID && videoID?.length >= 6) {
-      // return video id here
-      const newVideoID = 'placeholder';
-      return res.status(200).json({id: `${newVideoID}`});
-    }
+    if (!videoID || videoID.length < 6) return res.status(400).send({ message: 'No video id provided or could not be found' });
 
-    return res.sendStatus(400);
+    const newVideoID = 'placeholder';
+    return res.status(200).json({id: `${newVideoID}`});
+
   }); 
   
 };
