@@ -1,3 +1,3 @@
 export type DownloadMessageRequest = {
-    url: string // video url
+    url: string
 };
