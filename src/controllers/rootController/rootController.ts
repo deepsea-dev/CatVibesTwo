@@ -15,13 +15,13 @@ export const init = (app: Application): void => {
     res.status(200).json({message: `Hello: ${req.headers['user-agent']}`});
   });
   app.post('/api/submit', async (req: Request<DownloadMessageRequest>, res: Response<DownloadMessageResponse | ErrorResponse>) => {
-    if (req.body.url === undefined) return res.status(400).send({ message: 'No url provided' });
+    if (req.body.url === undefined) return res.status(400).json({ message: 'No url provided' });
     
     const videoID = req.body.url.match(YoutubeURLRegex);
     if (!videoID || videoID.length < 6) return res.status(400).send({ message: 'No video id provided or could not be found' });
 
     const newVideoID = 'placeholder';
-    return res.status(200).json({id: `${newVideoID}`});
+    return res.status(200).json({id: newVideoID});
 
   }); 
   
