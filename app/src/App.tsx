@@ -1,17 +1,7 @@
 import { UrlEntry } from './components/urlEntry';
 
-import backgroundImage from './images/background.png';
+import backgroundImage from './images/background-blurred.png';
 import styled from 'styled-components';
-
-const Content = styled.div`
-  background-image: url(${backgroundImage});
-  background-position: 70% 50%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /* filter: blur(8px); */
-  width: 70%;
-  height: 100vh;
-`;
 
 function App() {
   return (
@@ -21,5 +11,14 @@ function App() {
   );
 }
 
-export default App;
+const Content = styled.div`
+  background-image: url(${backgroundImage});
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* filter: blur(8px); */
+  width: 100vw;
+  height: 100vh;
+`;
 
+export default App;
