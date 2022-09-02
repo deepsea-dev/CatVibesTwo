@@ -6,12 +6,7 @@ export class JobManager {
 
   public addJob(url: string): string {
     const id = randomUUID();
-    this.jobs.push(
-      {
-        id,
-        url
-      }
-    );
+    this.jobs.push({id, url});
 
     return id;
   }
